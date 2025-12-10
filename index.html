@@ -954,7 +954,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+<!-- CONTACT -->
 <section id="contact">
   <p class="section-heading">Contact</p>
   <h2 class="section-title">Let’s make your operations easier to manage</h2>
@@ -976,8 +976,8 @@
       </p>
     </div>
 
-    <!-- ⭐ FINAL CONTACT FORM (WORKING FORM) -->
-    <form action="https://formspree.io/f/xblnzzyj" method="POST">
+    <!-- IMPORTANT: id="contact-form" + <p id="form-status"> -->
+    <form id="contact-form" action="https://formspree.io/f/xblnzzyj" method="POST">
       <label>
         Name
         <input type="text" name="name" placeholder="Your name" required />
@@ -990,24 +990,24 @@
 
       <label>
         What do you need help with?
-        <textarea 
-          name="message" 
-          rows="4" 
-          placeholder="Describe your admin, operations, or project needs..." 
-          required>
-        </textarea>
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Describe your admin, ops, or project needs..."
+          required></textarea>
       </label>
 
       <button type="submit" class="btn btn-primary" style="margin-top:6px; width:max-content;">
         Send message
       </button>
 
-      <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+      <p id="form-status" style="font-size:11px; color:var(--text-muted); margin-top:4px;">
         Your message will be sent directly to my inbox. I’ll reply within 24 hours.
       </p>
     </form>
   </div>
 </section>
+
 
   <footer>
     © <span id="year"></span> Tristan John Judiel D. Sernat · Virtual Assistant & Operations Support.
@@ -1016,11 +1016,14 @@
 </main>
 
 <script>
+  // Set footer year
   document.getElementById('year').textContent = new Date().getFullYear();
-   const form = document.getElementById('contact-form');
+
+  // Formspree AJAX submit
+  const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
 
-  if (form) {
+  if (form && status) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault(); // stop normal redirect
 
@@ -1047,6 +1050,7 @@
 </script>
 </body>
 </html>
+
 
 
 
