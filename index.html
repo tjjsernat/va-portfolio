@@ -978,7 +978,6 @@
 
     <!-- ⭐ FINAL CONTACT FORM (WORKING FORM) -->
     <form action="https://formspree.io/f/xblnzzyj" method="POST">
-      <input type="hidden" name="_redirect" value="https://tjjsernat.github.io/va-portfolio/#contact" />
       <label>
         Name
         <input type="text" name="name" placeholder="Your name" required />
@@ -1018,9 +1017,37 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+   const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  if (form) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); // stop normal redirect
+
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.reset();
+          status.textContent = "Thanks! Your message was sent successfully.";
+        } else {
+          status.textContent = "Something went wrong. Please try again or email me directly.";
+        }
+      } catch (err) {
+        status.textContent = "Network error. Please try again later or email me directly.";
+      }
+    });
+  }
 </script>
 </body>
 </html>
+
 
 
 
